@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>글렘쉘</title>
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"> 
+
+
+
+
+
+  <style>
+
+
+      div#red{
+         width:300px;
+         height:300px;
+         background: red;
+         position:absolute;
+         left:200px;
+         top:200px;
+      }
+
+      div#yellow{
+         width:150px;
+         height:150px;
+         background: yellow;
+         position:absolute;
+         left:50%;
+         margin-left:-75px;
+         top:50%;
+         margin-top: -75px;
+      }
+
+
+  </style>
+
+
+
+
+  <script>
+  
+
+
+  document.addEventListener("DOMContentLoaded", ()=>{
+
+   const redBtn=document.querySelector("#red")
+
+   // 마우스오버는 마우스엔터로 해결
+   // 마우스아웃은 마우스리브로 해결
+   redBtn.addEventListener('mouseenter', overRed)
+   redBtn.addEventListener('mouseleave', outRed)
+   
+   function overRed(){
+      alert("마우스가 오버되었습니다.")
+   }
+   function outRed(){
+      alert("마우스가 아웃되었습니다.")
+   }
+
+  })
+  
+
+
+
+
+
+
+
+
+
+
+
+   
+  
+  
+  
+  
+  
+  
+  
+  </script>
+
+
+</head>
+<body>
+
+   <div id="red">
+      parent
+      <div id="yellow">
+         child
+      </div>
+   </div>
+
+</body>
+</html>
