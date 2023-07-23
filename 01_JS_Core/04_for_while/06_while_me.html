@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> while 구문연습 3</title>
+  <script>
+//  while(true)는 무한반복할때 쓰는 구문이다.
+
+   let i=0;
+
+   
+   while(true){
+
+      
+
+      let userPw=prompt("비밀번호를 입력하세요");
+
+      if(userPw=="1234"){
+         document.write("환영합니다.");
+         break;
+      }else if(i>=5){
+         alert("비밀번호 5회 오류입니다.")
+         break;
+      }else{
+         alert("잘못입력하셨습니다.")
+      }
+      i++
+      }
+
+      
+
+   
+
+   
+
+
+    
+   //  for문은 횟수를 정의해야한다.
+
+   /* for(let i=0; i<=5; i++){
+      let userPw=prompt("비밀번호를 입력하세요")
+      if(userPw=="1234"){
+         document.write("환영합니다")
+         break;
+      }else{
+         alert("잘못입력하셨습니다.")
+      }
+    }
+    */
+
+  
+    
+  
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

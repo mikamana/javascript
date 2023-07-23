@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> if구문연습1</title>
+  <script>
+
+    // let result=confirm("아침 식사는 하셨나요?")
+
+    //document.write(result)
+  
+    // if(result==true){
+        // document.write("든든하시겠네요 스크립트 공부 열심히해봅시다")
+    // }else{
+        // document.write("참고 스크립트 공부 열심히 합시다.")
+    // }
+
+    // let result=confirm("배고프신가요?")
+    
+    // if(result==true){
+        // document.write("네")
+    // }else{
+        // document.write("아니요")
+    // }
+     
+    let eng=prompt("영어 점수를 입력하세요")
+   let kor=prompt("국어 점수를 입력하세요")
+   
+   eng=parseInt(eng);
+   kor=parseInt(kor);
+   
+   if(eng>=90 && kor>=90){
+     document.write("A학점")
+   }else if(eng+kor>=170){
+    document.write("B학점")
+   }else if(eng>=90 || kor>=90){
+    document.write("C학점")
+   }else{
+    document.write("D학점")
+   }
+
+  
+  
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

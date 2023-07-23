@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 조건 무한반복</title>
+  <script>
+
+
+// sum이나 count 변수를 null 이 아닌 숫자 0으로 지정하는 이유 : null은 숫자나 문자형식이 아닌 null이라는 데이터형식이기 떄문에 숫자를 인식하지못함.
+
+// 조건을 반복하고싶을때는 while(true)입력후 안에다가 반복하고싶은 내용을 넣는다.
+
+     let sum=0;
+     let count=0;
+
+
+    while(true){
+        let value=prompt("더할 숫자를 입력하세요",1);
+        value=parseInt(value)
+        if(value==0){
+            document.write("종료합니다.<br>")
+            break;
+        }else{
+            sum=sum+value;
+            document.write("합계:" +sum+"<br>")
+           
+        }
+    }
+    document.write("총"+count+"번 실행했습니다.")
+    
+    
+  
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

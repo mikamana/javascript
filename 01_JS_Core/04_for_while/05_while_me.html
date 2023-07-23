@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> while 구문연습 1</title>
+  <script>
+   
+   /*
+   for(let i=0; i<=10; i++){
+      document.write(i+"<br>")
+   }*/
+   
+
+
+   // while 구문에는 for구문과 다르게 괄호안에 조건식만 들어감 , 초기값 증감식을 따로 지정해줄 수 있다.
+   // while 구문은 증감식을 놓는 위치에따라 값이 달라진다.
+   let i=0;
+
+   while(i<=10){
+      // continue; //countinue 이전명령을 계속 반복
+      document.write(i + "<br>")
+      i++
+      
+   }
+   //  i++가 먼저 나오면 10이라는 숫자값에도 i++가 적용이 되어 11이된다. 하지만 i++가 뒤에 나오고 앞에 document.write가 나오면 표출되는 숫자가 10까지 나오게 만들어준다는 뜻이다.
+
+  
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
