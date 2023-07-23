@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+
+  <style> 
+
+    body{
+      height:3000px; 
+    }
+
+    div#quick_menu{
+      width:75px; height:235px; position:absolute; right:100px; top:300px; 
+    }
+   
+  </style>
+
+  <title> slideQuickMenu </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+  
+  <script>
+
+    document.addEventListener("DOMContentLoaded",()=>{
+
+      const quickMenu=document.querySelector("#quick_menu")
+
+      let quickMenuTop=300;
+
+      window.addEventListener("scroll", scrollWindow)
+
+      function scrollWindow(){
+
+        // 스크롤 할 때마다 스크롤된 높이를 구하는 변수
+        let scrollHeight=window.pageYOffset;
+
+        gsap.to(quickMenu, {top:scrollHeight+quickMenuTop, duration:0.8, ease:"power1.out"})
+
+      }
+
+
+
+
+    })
+
+
+
+
+
+
+
+    
+       
+        
+    
+  </script>
+
+
+</head>
+<body> 
+    
+  <div id="quick_menu">
+    <img src="images/quick.gif" alt="">
+  </div>
+  
+  
+</body>
+</html>

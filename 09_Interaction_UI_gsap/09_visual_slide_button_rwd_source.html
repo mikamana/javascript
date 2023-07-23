@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <style>    
+    
+    html,body{
+	    height:100%; overflow:hidden; 
+    }
+
+    body,p,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+      background:url("images/index_back.gif");
+    }
+
+    div#visual_wrap{
+      width:100%; height:469px; float:left; margin-top:100px; overflow:hidden;
+      border-top:solid 1px white; border-bottom:solid 1px white; box-sizing:border-box;
+    }
+
+    div#visual_inner{
+      width:980px; height:100%; margin:0px auto; position:relative; left:0px; top:0px; 
+    }
+
+    ul#visual_list{
+      width:100%; height:100%;  position:absolute; left:0px; top:0px; 
+    }
+
+    ul#visual_list li{
+      width:100%; height:100%;  float:left; 
+    }
+    ul#visual_list li img{
+      display:block; width:100%; 
+    }
+
+    span#prev_btn{
+      display:block; position:absolute; left:0px; top:45%; 
+    }
+
+    
+
+    span#next_btn{
+      display:block; position:absolute; right:0px; top:45%; 
+    }
+
+   
+
+    @media screen and (max-width:980px) {
+      div#visual_inner{
+        width:100%; 
+      }
+    }
+        
+
+  
+  </style>
+
+  <title> visual_slide_button_rwd </title>  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script>  
+
+    // slide에서는 visual wrap의 크기가 곧 움직임의 거리다.
+    
+    window.addEventListener("DOMContentLoaded",()=>{
+
+      slideVisualEffect()
+        
+    })
+
+    function slideVisualEffect(){
+
+      const visualWrap=document.querySelector("#visual_wrap")
+      const visualInner=document.querySelector("#visual_inner")
+      const visualList=document.querySelector("#visual_list")
+      const visualLi=document.querySelectorAll("#visual_list>li")
+      const visualImg=document.querySelectorAll("#visual_list>li>img")
+      const btnImg=document.querySelectorAll("#visual_inner>span>img")
+      const nextBtn=document.querySelector("#next_btn")
+      const prevBtn=document.querySelector("#prev_btn")
+
+      let visualWidth=null;
+      let visualLength=visualLi.length;
+      let isSlide=false;
+      let timer=null;
+
+      let isAutoSlide=false; // 자동슬라이드 작동 여부
+      let animationSpeed=0.5 //초단위로 입력하세요 (예)
+      let interval=1
+
+      visualList.prepend(visualList.lastElementChild)
+
+      initEvent()
+      visualReset()
+      autoSlide()
+
+      function initEvent(){
+        window.addEventListener("resize", visualReset)
+        nextBtn.addEventListener("click", slideNextVisual)
+        prevBtn.addEventListener("click", slidePrevVisual)
+        visualWrap.addEventListener("mouseenter", stopAutoSlide) 
+        visualWrap.addEventListener("mouseleave", autoSlide) 
+      }
+      
+      function autoSlide(){
+        timer=setInterval(slideNextVisual, interval*1000)
+      }
+
+      function stopAutoSlide(){
+        clearInterval(timer)
+      }
+
+      function slideNextVisual(){
+
+          if(isSlide==false){
+            isSlide=true;
+            let currentPosition=visualList.offsetLeft;
+            gsap.to(visualList, {left:currentPosition-visualWidth, duration:0.5, ease:"power1.out", onComplete:()=>{
+              visualList.append(visualList.firstElementChild)
+              gsap.set(visualList, {left:-visualWidth})
+              isSlide=false;
+            }})
+          }
+      }
+
+      function slidePrevVisual(){
+
+        if(isSlide==false){
+          isSlide=true;
+          let currentPosition=visualList.offsetLeft;
+          gsap.to(visualList, {left:currentPosition+visualWidth, duration:0.5, ease:"power1.out", onComplete:()=>{
+            visualList.prepend(visualList.lastElementChild)
+            gsap.set(visualList, {left:-visualWidth})
+            isSlide=false;
+          }})
+        }
+      }
+
+      function visualReset(){
+
+        visualWidth=visualInner.offsetWidth;
+
+        gsap.set(visualImg, {width:visualWidth})
+        gsap.set(visualLi, {width:visualWidth})
+        gsap.set(visualList,{width:visualWidth*visualLength})
+        gsap.set(visualWrap, {height:visualImg[0].offsetHeight})
+        gsap.set(btnImg, {width:visualWidth/20})
+        gsap.set(visualList, {left:-visualWidth})
+
+      }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+    window.addEventListener("load", ()=>{
+
+      const visualWrap=document.querySelector("#visual_wrap")
+      const visualInner=document.querySelector("#visual_inner")
+      const visualList=document.querySelector("#visual_list")
+      const visualLi=document.querySelectorAll("#visual_list>li")
+      const visualImg=document.querySelectorAll("#visual_list>li>img")
+      const 
+
+    })
+
+      
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+  </script>
+
+
+</head>
+<body>
+   
+  <div id="visual_wrap">
+   
+    <div id="visual_inner">
+      
+        <ul id="visual_list">
+            <li><img src="images/img1.gif" alt="" /></li>
+            <li><img src="images/img2.gif" alt="" /></li>
+            <li><img src="images/img3.gif" alt="" /></li>
+            <li><img src="images/img4.gif" alt="" /></li> 
+            <li><img src="images/img5.gif" alt="" /></li>               
+        </ul>       
+            
+        <span id="prev_btn"><img src="images/prev_btn.png" alt="" /></span>
+        <span id="next_btn"><img src="images/next_btn.png" alt="" /></span>
+        
+        
+    </div>    
+      
+</div>
+
+
+
+
+
+  
+</body>
+</html>

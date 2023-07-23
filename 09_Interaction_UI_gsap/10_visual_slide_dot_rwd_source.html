@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <style>
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body,
+    p,
+    ul,
+    li {
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+    }
+
+    body {
+      background: url("images/index_back.gif");
+    }
+
+    div#visual_wrap {
+      width: 100%;
+      height: 469px;
+      float: left;
+      margin-top: 100px;
+      overflow: hidden;
+    }
+
+    div#visual_inner {
+      width: 1200px;
+      height: 100%;
+      margin: 0px auto;
+      position: relative;
+      left: 0px;
+      top: 0px;
+      overflow: hidden;
+      border: solid 1px white;
+      box-sizing: border-box;
+    }
+
+    ul#visual_list {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+    }
+
+    ul#visual_list li {
+      width: 100%;
+      height: 100%;
+      float: left;
+    }
+
+    ul#visual_list li img {
+      display: block;
+    }
+
+
+    ul#dot_list {
+      width: 180px;
+      position: absolute;
+      left: 50%;
+      margin-left: -65px;
+      bottom: 20px;
+    }
+
+    ul#dot_list li {
+      width: 16px;
+      height: 16px;
+      float: left;
+      margin-right: 10px;
+      border-radius: 8px;
+      background: #FFF;
+      -webkit-transition: 0.2s ease;
+    }
+
+    ul#dot_list li.selected {
+      background: orange;
+      width: 32px;
+    }
+
+
+
+    @media screen and (max-width:1200px) {
+
+      div#visual_inner {
+        width: 100%;
+      }
+
+    }
+  </style>
+
+
+  <title> visual_slide_dot_rwd </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script>
+
+    window.addEventListener("load", () => {
+
+      const visualWrap = document.querySelector("#visual_wrap")
+      const visualList = document.querySelector("#visual_list")
+      const visualInner = document.querySelector("#visual_inner")
+      const visualLi = document.querySelectorAll("#visual_list>li")
+      const visualImg = document.querySelectorAll("#visual_list>li>img")
+      const dot = document.querySelectorAll("#dot_list>li")
+
+      let visualWidth = visualInner.offsetWidth;
+      let selectedDot = dot[0]
+      let timer = null;
+      let overIndex = 0;
+
+      // 자바스크립트에서 클래스지정해주는 메서드 add
+      // dot[0].classList.add("selected")
+
+      visualReset()
+      //autoSlide()
+
+      window.addEventListener("resize", visualReset)
+
+      for (const item of dot) {
+
+        item.addEventListener("mouseenter", overDot)
+
+      }
+
+
+      function visualReset() {
+
+        visualWidth = visualInner.offsetWidth
+
+        gsap.set(visualImg, { width: visualWidth })
+        gsap.set(visualLi, { width: visualWidth })
+        // visaulList의 크기가 visualInner.offsetWidth로 이미 지정이 되어있는 상황, visualList는 현재 li의 visualWidth 크기로 인식한다.
+        // 이럴 경우 만약 display를 줄이고 다음 li를 선택하면 그 줄여진 width값을 가졌던 li의 width 값으로 다음 li에 대입한다.   
+        // ul에 gsap.set으로 먼저 left 스타일을 지정해준다.   
+        gsap.set(visualList, { width: visualWidth * visualLi.length, left: -visualWidth * overIndex })
+        gsap.set(visualWrap, { height: visualImg[0].offsetHeight })//visualImg에 [0]을 넣은 이유는 이미지 하나의 크기를 알아내야하기때문에 (여러이미지 인식못함)
+
+      }
+
+
+
+      function autoSlide() {
+        timer = setInterval(addOverIndex, 2000)
+      }
+
+      function addOverIndex() {
+        overIndex++;
+        if (overIndex >= visualLi.length) {
+          overIndex = 0;
+        }
+        slideVisual(overIndex)
+        activateDot(overIndex)
+      }
+
+      function overDot() {
+
+        overIndex = getIndex(this)
+        // overDot 안에 getIndex를 넣어도 되는지 질문 
+        activateDot(overIndex)
+        slideVisual(overIndex)
+
+      }
+
+      function slideVisual(index) {
+        gsap.to(visualList, { left: -visualWidth * overIndex, duration: 0.5, ease: "power1.out" })
+      }
+
+      function getIndex(checkMenu) {
+
+        let checkIndex = 0;
+        while ((checkMenu = checkMenu.previousElementSibling) != null) {
+          checkIndex++
+        }
+        return checkIndex;
+
+      }
+
+
+      function activateDot(index) {
+
+        if (selectedDot != null && selectedDot != dot[index]) {
+          selectedDot.classList.remove("selected")
+
+        }
+        if (selectedDot != dot[index]) {
+          selectedDot = dot[index]
+          selectedDot.classList.add("selected")
+        }
+        // dot[index].classList.add("selected")
+
+      }
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<body>
+
+  <div id="visual_wrap">
+
+    <div id="visual_inner">
+
+      <ul id="visual_list">
+        <li><img src="images/img1.gif" alt="" /></li>
+        <li><img src="images/img2.gif" alt="" /></li>
+        <li><img src="images/img3.gif" alt="" /></li>
+        <li><img src="images/img4.gif" alt="" /></li>
+        <li><img src="images/img5.gif" alt="" /></li>
+      </ul>
+
+      <ul id="dot_list">
+        <li class="selected"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+</body>
+
+</html>

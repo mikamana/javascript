@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+    ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    ul#menu_list{
+      width:200px; position:absolute; left:500px; top:200px; 
+    }
+
+    ul#menu_list li{
+      width:200px; height:40px; margin-bottom:20px; line-height:40px; background:#eeeeee;  text-align:center;
+      -webkit-transition:0.2s ease; 
+      cursor:pointer;
+    }
+
+    ul#menu_list li.selected{
+      background:orange; color:white; 
+    }    
+  
+  </style>
+    
+
+  <title> menuActivate </title>
+
+  <script>    
+   
+
+    // 상단 CSS 스타일의 메뉴요소에 'selected' 클래스로 적용한 메뉴 활성화 스타일 속성 과 transition 속성확인 
+
+    // document.addEventListener("DOMContentLoaded",()=>{
+       
+
+    //   const mainMenu=document.querySelectorAll("#menu_list>li")
+
+    //   for(const item of mainMenu){
+
+    //     item.addEventListener("click", activateMenu)
+    //   }
+
+
+    //   function activateMenu(){
+    //     // 클래스리스트는 add뒤에 .을 찍지 않는다.
+    //     // for구문을 사용해서 기존에 활성화시켜놓은 것들을 remove 시켜준다. 하지만 이런 방법의 경우에는 모든 메뉴들을 비활성화시켜주는 작업을 진행한다. 
+    //     for(const item of mainMenu){
+    //       item.classList.remove("selected")
+    //     }
+
+    //     this.classList.add("selected")
+
+    //   }
+
+
+    // })
+
+   //  document.addEventListener("DOMContentLoaded",()=>{
+
+   //    const mainMenu=document.querySelectorAll("#menu_list>li")
+
+   //    let selectedMenu=null;
+
+   //    for(const item of mainMenu){
+   
+   //       item.addEventListener("click", clickMainMenu)
+
+   //    }
+
+
+   //    function clickMainMenu(){
+   //       let clickIndex=getIndex(this)
+   //       alert(clickIndex)
+   //    }
+
+   //    function getIndex(checkMenu){
+   //       let selectedIndex=0;
+   //       while((checkMenu=checkMenu.previousElementSibling)!=null;){
+   //          selectedIndex++;
+   //       }
+   //       return selectedIndex
+   //    }
+   // })
+
+      // document.addEventListener("DOMContentLoaded"()=>{
+
+      // const mainMenu=document.querySelectorAll("#menu_list>li")
+
+      // let selectedMenu=null;
+
+      // for(const item of mainMenu){
+   
+      //    item.addEventListener("click", clickMainMenu)
+
+      // }
+      
+      // function clickMainMenu(){
+      //    // 순번을 알아내는 함수 getindex
+      //    let clickIndex=getIndex(this)
+      //    activateMenu(clickIndex)
+      // }
+
+      // function getIndex(checkIndex){
+      //    let selectedIndex=0;
+      //    while((checkMenu=checkMenu.previousElementSibling)!=null){
+      //       selectedindex++;
+      //    }
+
+      //    return selectedIndex
+
+      // }
+
+      // function activateMenu(index){
+
+      //    if(selectedMenu!=null && selectedMenu!=mainMenu[index]){
+      //       selectedMenu.classList.remove("selected")
+      //    }
+
+
+      //    if(selectedMenu!=mainMenu[index]){
+      //       selectedMenu=mainMenu[index]
+      //       selectedMenu.classList.add("selected")
+      //    }
+
+      // }
+
+      // })
+
+
+      
+
+
+
+
+
+
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+  </script>
+
+
+</head>
+<body>
+
+    <ul id="menu_list">
+      <!-- 활성화된 상태에서 실행시키려면 li에 class를 먼저 넣고 시작할 수 있다.(상황에 따라서)  -->
+      <li class="selected">첫번째메뉴</li>
+      <li>두번째메뉴</li>
+      <li>세번째메뉴</li>
+      <li>네번째메뉴</li>
+    </ul>
+  
+</body>
+</html>
