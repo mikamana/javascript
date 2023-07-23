@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+  body{
+			font-size:9pt;		
+		}
+
+    #wrap{
+      width:600px; height:400px; position:absolute; left:50%; margin-left:-300px; top:200px; 
+    }		
+		
+		#panel{
+			width:600px;
+			height:300px;
+			border:1px solid #999;
+			position:relative;
+      margin-bottom:30px; 
+		}
+		
+		#bar{
+			position:absolute;
+			left:50px;
+			top:190px;
+			width:500px;
+			height:20px;
+			z-index:10;
+			
+			border-top:dotted 1px #999;
+		}
+		
+		#ball{
+			position:absolute;
+			left:50px;
+			top:105px;
+			width:80px;
+			height:80px;
+			
+		}
+		
+		#nav{
+			text-align:center;
+			width:600px;
+		}
+  
+  
+  </style>
+
+
+ <title> ballMoving1 </title>
+
+
+  <script>  	
+		
+		// 사용해서 일정한 시간마다 반복하게 하는 함수 setInterber을 사용하고 
+		// 일정한 시간마다 X좌표를 움직이게 하는 함수를 사용한다.
+		// 일정한 시점마다 다시 돌아오게 하는 함수를 사용한다.
+		// 시작,멈춤 이벤트를 사용한다.
+
+		document.addEventListener("DOMContentLoaded", ()=>{
+
+              
+			const ball=document.querySelector("#ball")
+            const line=document.querySelector("#bar")
+			const startBtn=document.querySelector("#start_btn")
+			const stopBtn=document.querySelector("#stop_btn")
+			
+            let startX=line.offsetLeft;
+			let currentX=startX;
+			let stepX=2;
+			let endX=startX+line.offsetWidth-ball.offsetWidth;
+
+			let timer=null;
+			let isMoving=false;
+			// console.log(endX)
+			startBtn.addEventListener("click", startBallMoving)
+
+			function startBallMoving(){
+
+			if(isMoving==false){
+				timer=setInterval(ballMoving, 20)
+				isMoving=true;
+			}
+
+			}
+			function stopBallMoving(){
+                if(isMoving==true){
+					clearInterval(timer)
+					isMoving=false;
+				}
+            
+			function ballMoving(){
+
+				currentX+=stepX;
+
+				if(currentX>=endX || current<=startX){
+					stepX*-1
+				}
+
+				ball.style.left=currentX+"px"
+
+
+			}
+		    }
+	})
+
+
+
+		document.addEventListener("DOMContentLoaded", ()=>{
+
+			const ball=document.querySelector("#ball")
+			const line=document.querySelector("#bar")
+			const startBtn=document.querySelector("#start_btn")
+			const stopBtn=document.querySelector("#stop_btn")
+
+			startBtn.addEventListener("click", startBallMoving)
+			stopBtn.addEventListener("click", stopBallMoving)
+
+			let timer=null;
+
+			
+
+
+
+
+				// setInterval을 멈추는 함수 clearInterval
+				// 상태변수란 : 어떤 상황에 따라서 명령을 다르게 주는것, 변수를 하나 지정해주는 것
+
+
+			}
+
+			function ballMoving(){
+
+
+
+
+			}
+
+		})
+
+
+
+  
+  	
+				
+  
+  
+  </script>
+
+
+</head>
+<body>
+  
+  <div id="wrap"> 	
+		<div id="panel">
+			<div id="bar"> </div>
+			<div id="ball">
+				<img src="images/ball.png">
+			</div>
+		</div>
+		<div id="nav">
+			<button id="start_btn">시작</button>
+			<button id="stop_btn">멈춤</button>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <style>
+  
+    div#red{
+      width:400px; height:400px; position:absolute; left:200px; top:200px; background:red; 
+      overflow:scroll;     
+    }
+  
+    div#yellow{
+      width:800px; height:800px; position:absolute; left:100px; top:100px; background:yellow;
+      border:solid 10px black; box-sizing:border-box;
+      
+    }  
+    
+  </style>
+
+  <title> 해당요소 스크롤 좌표와 크기구하기  </title>  
+     
+
+
+
+
+  
+
+  <script> 
+     
+
+     document.addEventListener("DOMContentLoaded",()=>{
+
+       const red=document.querySelector("#red")
+
+      //  red.scrollTo(100,100)
+      // //  스크롤하는 대상은 부모요소다
+      //  red.scrollBy(100,100);
+      
+      //console.log(red.scrollTop)
+      //console.log(red.scrollLeft)
+        
+      console.log(red.scrollWidth)
+      // 스크롤할 수 있는 전체높이를 scrollHeight
+
+     })
+  
+  </script>
+
+
+</head>
+
+<body>
+  
+  <div id="red">
+
+    parent
+
+    <div id="yellow">
+      child
+    </div>
+
+  </div>
+
+</body>
+
+</html>

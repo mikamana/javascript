@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+    
+    body{
+			font-size:9pt;	
+		}
+
+    #wrap{
+      width:600px; height:500px; position:absolute; left:50%; margin-left:-300px; top:200px;
+    }
+			
+		#panel{
+			width:600px;
+			height:400px;
+			border:1px solid #999;
+			position:relative;
+      margin-bottom:30px; 
+		}
+		
+		#ball{
+      position:absolute;
+      left:252px;
+      top:150px;
+      width:80px;
+      height:80px;
+		}
+		
+		#nav{
+			text-align:center;
+			width:600px;
+		}
+ 
+  
+  </style>
+
+  <title> ballMoving2 </title>
+
+  <script>
+
+    //  start는 현재  ball의 X,Y좌표이다.
+		//  endX 는 벽에 부딪혔을때인데 구하는 방법은 panel의 width 크기 - ball의 width 크기이다.
+		//  endY 는 panel 의 height 값에서 ball의 height값을 뺀 값이다.
+    
+         document.addEventListener("DOMContentLoaded",()=>{
+
+           const panel=document.querySelector("#panel")
+           const ball=document.querySelector("#ball")
+           const startBtn=document.querySelector("#start_btn")
+           const stopBtn=document.querySelector("#stop_btn")
+
+           
+           // offset은 부모요소의 X좌표 
+           // start지점은 상황에 따라서 계속 달라질 수 있어 const가 아닌 let을 사용해주었다.
+           let startX=ball.offsetLeft; // 메서드는 offsetX가 아닌 offsetLeft 이다. 
+           //  부모요소의 Y좌표
+           let startY=ball.offsetTop;
+           // current 는 현재위치라는 뜻  
+           let currentX=startX;
+           let currentY=startY;
+
+           let stepX=4;
+           let stepY=4;
+
+           let endX=panel.clientWidth-ball.offsetWidth;
+           let endY=panel.clientHeight-ball.offsetHeight;
+          
+
+           let timer=null;
+
+           let isMoving=0;
+
+
+
+           startBtn.addEventListener("click", ballMoving)
+           //startBtn.addEventListener("click", startMovingPosition)
+           stopBtn.addEventListener("click", stopMovingPosition)
+
+        /*   function startMovingPosition(){
+
+            if(isMoving==0){
+              timer=setInterval(ballMoving, 20)
+              isMoving=1;
+            }
+            // setInterval = 일정한 시간마다 반복해주는 메서드함수 
+              
+           }*/
+
+  
+
+           function stopMovingPosition(){
+            
+            if(isMoving==1){
+
+              cancelAnimationFrame(timer)
+              //clearInterval(timer)
+              isMoving=0;
+
+            }
+    
+
+           }
+
+
+           function ballMoving(){
+              
+              isMoving=1;
+            
+              currentX += stepX;
+              currentY += stepY;
+              
+              if(currentX>=endX || currentX<=0){
+                stepX*=-1
+              }
+              if(currentY>=endY || currentY<=0){
+                stepY*=-1
+              }
+         
+              ball.style.left = currentX + "px"
+              ball.style.top = currentY + "px"
+
+              timer=requestAnimationFrame(ballMoving)
+           }
+
+        
+         })
+
+
+    
+    
+  
+  </script>
+
+
+</head>
+<body>
+  
+    <div id="wrap"> 
+		
+        <div id="panel"> 	
+          <div id="ball">
+            <img src="images/ball.png">
+          </div>
+        </div>
+        <div id="nav">
+          <button id="start_btn">시작</button>
+          <button id="stop_btn">멈춤</button>
+        </div>
+      
+      </div>
+
+
+
+
+</body>
+</html>

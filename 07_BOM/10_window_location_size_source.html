@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <style>
+
+    body{
+      margin:0px; padding:0px; 
+    }
+  
+    div#wrap{
+      width:100%; height:3000px; border:solid 10px red; box-sizing:border-box; 
+    }
+    
+  </style>
+
+  <title> 윈도우 좌표와 크기구하기  </title>  
+         
+
+  <script> 
+
+   window.addEventListener('load', ()=>{
+
+      //  모니터를 기준으로 윈도우 X좌표 구하기
+       console.log(window.screenLeft)
+      //  모니터를 기준으로 윈도우 Y좌표 구하기
+       console.log(window.screenTop)
+      //  윈도우 안쪽 X크기 구하기
+       console.log(window.innerWidth)
+      //  윈도우 바깥쪽 크기 구하기
+       console.log(window.outerWidth)
+      //  console.log(window.innerheight)
+      //  console.log(window.outerheight)
+
+      //  window.scrollTo(0,500)
+
+
+      //  윈도우가 얼마나 스크롤되어있는지 알아내는 함수
+      //  console.log(window.pageYOffset)
+      // 가로로 얼마나 스크롤되어있는지 알아내는 함수
+      // console.log(window.pageYOffset)
+      // //  전체 스크롤할 수 있는 크기를 나타내주는 함수
+      // console.log(document.body.scrollHeight)
+      // // 가로로 전체 스크롤할 수 있는 크기
+      // console.log(document.body.scrollWidth)
+       
+      // window.addEventListener("scroll", scrollWindow)
+
+      // function scrollWindow(){
+
+      //   let scrollHeight=window.pageYOffset;
+
+      //   if(scrollHeight>=1000){
+      //     alert("스크롤값이 1000을 넘었습니다.")
+      //   }
+
+      // }
+
+
+   })
+
+
+
+
+
+
+  
+  </script>
+
+
+</head>
+
+<body>
+  
+  <div id="wrap">
+
+    wrap
+    
+
+  </div>
+
+</body>
+
+</html>

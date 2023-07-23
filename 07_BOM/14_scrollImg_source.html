@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> scrollImg </title>
+
+  <style>
+    
+    body{
+			font-size:9pt;		
+		}		
+
+    #wrap{
+      width:600px; height:500px; position:absolute; left:50%; margin-left:-300px; top:200px; 
+    }
+
+		#panel{
+			width:600px;
+			height:400px;
+			position:relative;
+      margin-bottom:30px; 
+		}
+		
+		
+		#img_wrap{			
+			width:220px;
+			height:220px;			
+			border:1px solid #999;
+			position:absolute; left:50%; margin-left:-110px; top:50%; margin-top:-110px;
+			overflow:hidden;
+		}
+		
+		#img_wrap img{
+			display:block;
+		}
+		
+		#nav{
+			text-align:center;
+			width:600px;
+		}
+ 
+  
+  </style>
+
+
+  
+
+  <script>
+  
+
+  document.addEventListener("DOMContentLoaded",()=>{
+
+  
+    const imgWrap=document.querySelector("#img_wrap")
+    const startBtn=document.querySelector("#start_btn")
+    const stopBtn=document.querySelector("#stop_btn")
+
+
+
+    let imgLength=imgWrap.children.length;
+    // console.log(imgLength)
+    let startY=0;
+    let currentY=startY;
+    let stepY=2;
+    let endY=(imgWrap.clientHeight*imgLength)-imgWrap.clientHeight
+
+    let timer=null;
+    let isScroll=false;
+    // let endY=imgWrap.clientHeight*(imgLength-1);
+
+    startBtn.addEventListener("click", startScrollImg) 
+    stopBtn.addEventListener("click", stopScrollImg)
+
+    function startScrollImg(){
+      if(isScroll==false){
+        scrollImg()
+        //timer=setInterval(scrollImg, 20)
+        isScroll=true;
+        
+      }
+    }
+    function scrollImg(){
+
+      
+      // currentY+=stepY;
+      // if(currentY>=endY || currentY<=0){
+      //   stepY*=-1
+      // }
+      // imgWrap.scrollTo(0,currentY)
+      
+      // timer=requestAnimationFrame(scrollImg)
+
+      // isScroll=true;
+        if(currentY>=endY || currentY<=0){
+          stepY*=-1
+        }
+        imgWrap.scrollTo(0,currentY)
+        
+        timer=requestAnimationFrame(scrollImg)
+      
+      
+    }
+
+    function stopScrollImg(){
+      if(isScroll==true){
+      cancelAnimationFrame(timer)
+      isScroll=false;
+      }
+    }
+
+
+  })
+    	
+		
+	
+
+
+
+
+
+
+  
+		
+  
+  </script>
+
+
+</head>
+<body>
+  
+    <div id="wrap"> 
+	
+        <div id="panel">
+          <div id="img_wrap">	
+            <img src="images/img1.jpg">
+            <img src="images/img2.jpg">
+            <img src="images/img3.jpg">
+            <img src="images/img4.jpg">
+            <img src="images/img5.jpg">
+            <img src="images/img6.jpg">
+            <img src="images/img7.jpg">
+            <img src="images/img8.jpg">
+            <img src="images/img9.jpg">
+            <img src="images/img10.jpg">
+          </div>
+        </div>
+        <div id="nav">
+          <button id="start_btn">시작</button>
+          <button id="stop_btn">멈춤</button>
+        </div>
+      </div>
+
+
+
+</body>
+</html>

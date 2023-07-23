@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> lottery </title>
+
+  <style>
+    
+    body{
+			font-size:9pt;
+		}
+
+    #wrap{
+      width:400px; height:500px; position:absolute; left:50%; margin-left:-200px; top:200px; 
+    }
+
+		#panel{
+			border:1px #000000 solid;
+			line-height:400px;
+			font-size:100px;
+			width:400px;
+			height:400px;
+			text-align:center;
+			vertical-align:middle;		
+      margin-bottom:30px; 
+		}
+
+    #nav{
+      text-align:center; 
+    }
+  
+  </style>
+
+	 <title> lottery </title>  
+
+  <script>  
+
+		// document.addEventListener("DOMContentLoaded",()=>{
+
+    //   const panel=document.querySelector("#panel")
+    //   const totalWrap=document.querySelector("#total_wrap")
+    //   const startBtn=document.querySelector("#start_btn")
+    //   const stopBtn=document.querySelector("#stop_btn")
+      
+    //   let totalMember=null;
+    //   let timer=null;
+
+    //   startBtn.addEventListener("click", startLottery)
+    //   stopBtn.addEventListener("click", stopLottery)
+
+    //   function startLottery(){
+    //     totalMember=parseInt(totalWrap.value); //입력한 값을 알아내는 키워드 value;
+    //     timer=setInterval(lottery, 20)
+    //     panel.style.color="black"
+    //   }
+      
+    //   function lottery(){
+    //     let count=parseInt(Math.random()*totalMember)+1
+    //     panel.innerHTML=count
+    //     panel.style.fontSize=parseInt(Math.random()*100)+100+"px"
+    //   }
+      
+    //   function stopLottery(){
+    //      clearInterval(timer)
+    //      panel.style.fontSize=200+"px"
+    //      panel.style.color="red"
+    //   }
+    // })
+
+        document.addEventListener("DOMContentLoaded",()=>{
+
+          const panel=document.querySelector("#panel")
+          const totalWrap=document.querySelector("#total_wrap")
+          const startBtn=document.querySelector("#start_btn")
+          const stopBtn=document.querySelector("#stop_btn")
+
+          startBtn.addEventListener("click", startLottery)
+          stopBtn.addEventListener("click", stopLottery)
+
+          let totalMember=null;
+          let timer=null;
+
+          function startLottery(){
+            totalMember=parseInt(totarWrap.value);
+            timer=setInterval(lottery, 1000)
+          }
+
+          function lottery(){
+            let count=Math.random()*totalMember
+          }
+          
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+  </script>
+
+
+</head>
+<body>
+  
+  	<div id="wrap"> 
+	
+        <div id="panel" > 
+              
+        </div>
+    
+        <div id="nav">
+          참여인원 : <input type="text" id="total_wrap" value="10"></input>
+          <button id="start_btn">시작</button>
+          <button id="stop_btn">멈춤</button>
+        </div>
+       </div>
+
+
+
+</body>
+</html>
