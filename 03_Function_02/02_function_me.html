@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title> 함수활용연습2</title>
+   <script>
+
+      let num1 = prompt("첫번째 숫자를 입력하세요");
+      let op = prompt("사칙연산자 중 하나를 입력하세요")
+      let num2 = prompt("두번째 숫자를 입력하세요")
+
+      num1 = parseInt(num1)
+      num2 = parseInt(num2)
+
+      let result = null;
+
+      function conduct() {
+         switch (op) {
+            case "+": result = num1 + num2;
+               break;
+            case "-": result = num1 - num2;
+               break;
+            case "*": result = num1 * num2;
+               break;
+            case "/": result = num1 / num2;
+               break;
+            default: result = "지원하지 않는 연산자입니다."
+         }
+         document.write(result)
+         // return result;
+
+      }
+
+      document.write(conduct())
+
+
+
+
+
+   </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
