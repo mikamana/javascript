@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title> 클래스 </title>
+  <script>
+  
+     /* 클래스와 인스턴스 생성방법 	 
+     
+    
+     3. ES6 버전  class 구문을 활용한 방식 
+     
+
+    - ES6 버전에 추가된 class 구문을 활용하여 생성자함수(constructor)와 여러가지 메서드들을 바로 생성하는 방식 
+
+    
+    class 클래스명{
+
+      constructor(매개변수1, 매개변수2..){
+        this.속성1=값1;
+        this.속성2=값2;
+      }
+      메서드1{
+        실행할 명령 
+      }
+      메서드2{
+        실행할 명령 
+      }
+
+    }
+     
+     인스턴스(instance) 생성 
+     
+     let 생성할 인스턴스 명 = new 생성자함수(클래스)명("속성값1","속성값2","속성값3"....)   
+     
+     // 생성자 함수 (클래스) 매개변수에 새로운 속성값을 지정하고 new 연산자를 사용하여 새로운 객체(인스턴스)를 생성    
+ 
+               
+     인스턴스 속성 과 메서드 사용방법      
+    
+     인스턴스명 .속성 .메서드()   // . 을 사용하여 해댱 객체의 속성과 메서드를 실행시킨다.  
+
+     
+     장점) 생성자 함수와 메서드들을 분리하여 생성하지 않고 class 구문으로 묶어서 생성 ( 효율적 코드관리 )
+
+     */     
+
+
+
+     //class의 첫글자는 무조건 대문자로 시작한다. 
+     class Burger{
+
+      //생성자함수를 사용하는 방식, 인스턴스를 constructor 안에 넣는 개념이다. 이렇게 사용하게되면 변수를 선언하고 매개변수 값만 지정해주면 버거생성을 효율적으로 할 수 있음
+      constructor(burgerInfo){
+
+        this.name=burgerInfo.name;
+        this.patty=burgerInfo.patty;
+        this.drink=burgerInfo.drink;
+        this.sideMenu=burgerInfo.sideMenu;
+
+      }
+
+      order(){
+
+        document.write("세트이름:"+ this.name+"<br>")
+        document.write("패티종류:"+ this.patty+"<br>")
+        document.write("음료:"+ this.drink+"<br>")
+        document.write("사이드메뉴:"+ this.sideMenu+"<br>")
+
+      }
+      }
+
+      let shrimpBurgerInfo={
+        name:"새우버거세트",
+        patty:"새우",
+        drink:"콜라",
+        sideMenu:"치즈스틱",
+      }
+      let chickenBurgerInfo={
+        name:"치킨버거세트",
+        patty:"치킨",
+        drink:"콜라",
+        sideMenu:"치즈스틱",
+      }
+
+     let shrimpBurger=new Burger(shrimpBurgerInfo)
+
+     shrimpBurger.order()
+
+     let chickenBurger=new Burger(chickenBurgerInfo)
+     
+     chickenBurger.order()
+
+   
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
+

@@ -1,0 +1,134 @@
+<!DOCTYPE innerHTML=>
+<innerHTML= lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> Date() 클래스</title>
+
+  <style>
+  
+    div#wrap{
+      width:600px; height:652px; position:absolute; left:50%; margin-left:-300px; 
+      top:50%; margin-top:-326px; background:url("images/watch_back.png") no-repeat center; 
+    }
+
+    div#hours_wrap{
+      width:250px; height:80px; position:absolute; left:220px; top:260px; 
+      font:bold 60px "Arial"; color:#9e9d80;
+    }
+
+    div#ampm_wrap{
+      width:30px; height:20px; position:absolute; left:220px; top:240px; 
+      font:normal 16px "Arial"; color:#9e9d80;
+    }
+
+    div#seconds_wrap{
+      width:50px; height:30px; position:absolute; left:380px; top:285px; 
+      font:normal 30px "Arial"; color:#9e9d80;
+    }
+
+    div#day_wrap{
+      width:40px; height:20px; position:absolute; left:258px; top:239px;
+      color:#9e9d80; font:normal 16px "Arial"; 
+    }
+  
+  
+  </style>  
+
+  <script>
+  
+  // 디지털 시계만들기 
+
+    
+  document.addEventListener('DOMContentLoaded',()=>{
+
+    clock()  // 함수그룹화 
+
+  })
+
+
+  function clock(){    
+    
+    
+    showTime(); // 현제 시간정보를 출력하는 함수 ( 시작하자 마자 한번 실행 )
+
+    setInterval(showTime,500) 
+    // 0.5초 간격으로 현제 시간정보를 출력 ( 1초 간격으로 실행하면 정보를 얻는 시간과 출력하는 시간의 약간의 차이 )
+    
+    
+    function addZero(value){ // 시간정보가 10보다 작을때 00 단위로 출력하는 함수 
+
+      if(value<10){
+        value="0"+value // 주의) "0" 은 문자처리 ( + 사칙연산 처리됨 )
+      }
+
+      return value; 
+
+    }
+
+    function ampm(value){ // 시간정보를 오전 오후 정보로 출력 
+      if(value<12){
+       document.querySelector("#ampm_wrap").innerHTML="AM"        
+      }else if(value==12){ // 정각 12 이면 PM으로 표시하고 숫자는 그대로 12로 출력 
+        document.querySelector("#ampm_wrap").innerHTML="PM";
+      }else{ // 시간이 12시 보다 크면 PM으로 표시하고 숫자는 12를 뺀 숫자로 출력         
+       document.querySelector("#ampm_wrap").innerHTML="PM";
+        value=value-12;
+      }
+
+      return value; 
+
+      
+    }
+
+
+    function showTime(){ // 현제 시간정보를 함수로 정의 ( 중요-setInterval 함수내에 정의하면 안되고 별도의 함수로 정의 - 시간차 )
+
+      let userTime=new Date();
+      let hours=ampm(userTime.getHours());
+      let minutes=addZero(userTime.getMinutes());
+      let seconds=addZero(userTime.getSeconds());
+      let day=userTime.getDay() 
+
+      let dayArray=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"] // 요일이름을 배열로 지정   
+        
+      document.querySelector("#hours_wrap").innerHTML=hours+":"+minutes;
+      document.querySelector("#seconds_wrap").innerHTML=seconds;
+      document.querySelector("#day_wrap").innerHTML=dayArray[day] // 해당되는 요일의 숫자를 요일이름 배열에서 순번으로 출력 
+
+    }        
+
+
+  }
+
+    
+  
+  </script>
+</head>
+<body>
+  
+  <div id="wrap">
+
+    <div id="hours_wrap">
+      
+    </div>
+
+    <div id="ampm_wrap">
+     
+    </div>
+
+    <div id="day_wrap">    
+
+    </div>
+
+    <div id="seconds_wrap">
+     
+    </div>
+
+  </div>
+
+
+</body>
+</innerHTML=>
+

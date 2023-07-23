@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title> String()클래스 </title>
+  <style>
+  
+    body{
+      margin:0px; padding:0px; 
+    }
+  
+    div#header_wrap{
+      width:100%; height:114px; padding:30px; box-sizing:border-box; background-repeat: repeat-x;
+      font-size:12px; 
+    }
+  
+  
+  </style> 
+
+
+  <script>
+  
+    // 현제 파일이름과 메인페이지 구분 
+
+    window.addEventListener('load',()=>{  // window.location객체를 사용해야되므로 window load 이벤트 사용 
+
+      let pathName=window.location.pathname; // 페이지 경로를 얻어냄 
+      //alert(pathName)
+      let startLine=pathName.lastIndexOf("/"); // 경로에서 마지막 "/" 문자열의 순번을 얻어냄 
+
+      let fileName=pathName.substr(startLine+1) // 마지막 "/"라인 이후부터 파일이름 찾기 (끝 문자열갯수가 없으니까 끝까지 얻어냄 - 확장자까지 포함 )
+      
+      //alert(fileName)
+
+      document.querySelector("#file_name").innerHTML="파일이름: "+fileName; // 파일이름 입력문단에 찾아낸 파일이름 출력 
+
+      let isIndex=fileName.substr(0,5) // 파일이름에서 확장자를 제외한 다섯글자를 얻어냄 (파일이름이 index 인지 확인 )
+
+      
+      if(isIndex=="index"){ // 파일이름이 index 이면 
+
+        document.querySelector("#is_page").innerHTML="페이지구분: 메인페이지 "; // 페이지구분 입력문단에 "메인페이지" 라고 입력 
+        document.querySelector("#header_wrap").style.backgroundImage="url('images/header_bg.gif')" // #header_wrap 에 메인페이지 디자인의 백그라운드 적용 
+
+      }else{ // 파일이름이 index 가 아니면 (서브페이지)
+
+        document.querySelector("#is_page").innerHTML="페이지구분: 서브페이지 " // 페이지구분 입력문단에 "서브페이지" 라고 입력 
+        document.querySelector("#header_wrap").style.backgroundImage="url('images/header_bg_2.gif')" // #header_wrap 에 서브페이지 디자인의 백그라운드 적용 
+      }
+
+      
+    })
+
+        
+  
+  </script>
+</head>
+<body>
+  
+  <div id="header_wrap">
+
+    <p id="file_name">  </p>
+
+    <p id="is_page">   </p>
+
+
+  </div>
+
+  
+  
+
+
+</body>
+</html>
+

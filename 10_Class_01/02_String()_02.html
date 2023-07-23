@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title> String()클래스 </title>
+  <style>
+  
+    
+  div#phone{
+    width:351px; height:717px; position:absolute; left:300px; top:50px; 
+    background:url("images/phone.png")
+  }
+
+  div#message{
+    width:303px; height:475px; position:absolute; left:25px; top:104px; background:#ecd818;
+    padding:30px; box-sizing:border-box; font:bold 14px "돋움"; color:white; 
+  }
+  
+  
+  </style>
+
+
+  <script>
+  
+    // 문자열 타이핑 효과 
+
+    document.addEventListener('DOMContentLoaded',()=>{   
+
+      
+      const message=document.querySelector("#message") // 문자를 출력할 영역 
+
+      let str=prompt("메세지를 입력해 주세요");
+
+      
+      let index=0; // 문자열의 초기 순번 
+      let text; // str 문자열의 한글자씩 대입할 변수 
+
+      let timer=setInterval(messageTyping,200); // 0.2 초 간격으로 메세지 출력하는 함수 실행 
+
+      
+      function messageTyping(){ // 메세지 타이핑하는 함수 
+
+
+        text=str.charAt(index) // 문자열에서 순번대로 한글자씩 대입 
+
+        let span=document.createElement('span') // 한글자씩 넣을 span 요소 생성 
+
+        span.style.display='inline-block' // 계속 가로로 가는 span 요소를 영역에서 떨어지게 
+
+        span.innerHTML=text // 한글자씩 span 요소에 넣어줌 
+
+        message.append(span) // 한글자씩 message 영역에 추가해줌 
+
+        
+        index++; // 순번을 하나씩 더함 
+
+        
+        if(index>=str.length){ // 순번이 마지막 문자열일때 
+
+          clearInterval(timer); // setInterval 종료 
+         
+        }
+
+      }
+
+
+    })
+        
+  
+  </script>
+</head>
+<body>
+
+
+  <div id="phone">
+
+      <div id="message">
+
+
+      </div>
+
+
+  </div>
+  
+  
+
+
+</body>
+</html>
+
