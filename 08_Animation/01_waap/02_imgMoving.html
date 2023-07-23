@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+    body{
+			background:url(images/index_back.gif);
+		}
+		
+		div#wrap{
+			width:400px;
+      height:333px;
+      position:absolute; left:50%; margin-left:-200px; top:200px; 
+			overflow:hidden;			
+			
+		}
+		
+		p#img_wrap{
+			width:800px;
+			height:333px;
+			position:absolute; left:0px; top:0px; 
+		}
+  
+  
+  
+  </style>
+
+
+  <title> imgMoving </title>
+
+  <script>    
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const wrap=document.querySelector('#wrap'); // 이미지 움직임의 길이를 설정할수 있는 #wrap 찾음 
+      const imgWrap=document.querySelector('#img_wrap'); // 움직임 대상인 #img_wrap 찾음 
+      
+      let imgMovingWidth=wrap.clientWidth; // 움직임의 가로길이를 wrap의 안쪽 가로크기로 설정          
+
+      document.querySelector('#img1').addEventListener('click',imgMovingLeftAni); // 첫번째 이미지 클릭 하면 이미지가 왼쪽으로 움직이는 함수실행 
+      document.querySelector('#img2').addEventListener('click',imgMovingRightAni); // 두번째 이미지 클릭 하면 이미지가 다시 오른쪽으로 움직이는 함수실행 
+
+      function imgMovingLeftAni(){ // 이미지 움직임을 왼쪽으로 이동하는 함수 
+        
+        imgWrap.animate([
+          {left:0}, // 이미지 움직임의 시작위치 
+          {left:-imgMovingWidth+'px'} // 이미지 움직임의 끝나는 위치 (이미지 하나크기 만큼 왼쪽으로 이동 'px' 단위주의  )
+        ],{
+          duration:500, easing:'ease-out', fill:'forwards' // 중요) 에니메이션 종료후 마지막 속성으로 유지 
+        })        
+
+      }
+
+      function imgMovingRightAni(){ // 이미지 움직임을 다시 오른쪽으로 이동하는 함수 
+        
+        imgWrap.animate([
+          {left:-imgMovingWidth+'px'}, // 이미지 움직임의 시작위치 
+          {left:0} // 이미지 움직임의 끝나는 위치 ( 원래 위치 0 으로 다시이동 )
+        ],{
+          duration:500, easing:'ease-out', fill:'forwards'  // 중요) 에니메이션 종료후 마지막 속성으로 유지 
+        })       
+
+      }
+      
+    })    
+    
+  </script>
+
+
+</head>
+<body>
+
+    <div id="wrap">
+      <p id="img_wrap">
+        <img id="img1" src="images/shoes1.jpg" alt="" /><img id="img2" src="images/shoes2.jpg" alt=""  />
+      </p>
+    </div>
+  
+</body>
+</html>

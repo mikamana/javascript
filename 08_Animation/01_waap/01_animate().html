@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+    #wrap{
+      width:880px;
+      height:300px;
+      position:absolute; left:50%; margin-left:-440px; top:200px;      
+    }
+    
+    #panel{
+      width:100%; height:220px; 
+      border:1px #000000 solid; 		
+      margin-bottom:10px; 
+      position:absolute; left:0px; top:0px; 
+      
+    }
+		
+		#ball{			
+			width:50px; 
+			height:50px;
+      border-radius:25px; 
+			position:absolute; left:0px; top:85px; 
+      background:red;		
+    }	
+    
+    #start_btn{
+      position:absolute; bottom:20px; left:50%; margin-left:-20px; 
+    }
+  
+  
+  
+  </style>
+
+  <title> ballMoving - Web Animation API 1 </title>
+
+  <script>    
+
+   /* 
+       Web Animation API 
+       
+       
+       기본형식 
+
+       에니메이션대상.animate([
+         {속성1:값, 속성2:값}, //에니메이션 시작 속성 값
+         .
+         .
+         {속성1:값, 속성2:값}, // 에니메이션 끝 속성 값               
+      ],에니메이션효과시간);
+
+
+      옵션설정 
+
+       에니메이션대상.animate([
+         {속성1:값, 속성2:값}, //에니메이션 시작속성
+         .
+         .
+         {속성1:값, 속성2:값}, // 에니메이션 끝속성         
+      ],{
+        duration: 에니메이션 시간 (기본단위 ms )
+        easing: 가속감속효과 ( 'linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out')
+        delay: 시작지연 시간 (기본단위 ms )
+        iterations: 반복횟수 ( Infinity 또는 숫자 )
+        direction: 진행방향 ('normal', 'reverse' 'alternate', 'alternate-reverse')
+      });
+          
+    */	
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const ball=document.querySelector('#ball'); // 에니메이션 대상인 #ball 찾음 
+      const panel=document.querySelector('#panel'); // 에니메이션 거리를 체크할 수 있는 #panel 찾음 
+
+      let endX=panel.clientWidth-ball.offsetWidth; // 공의 움직임이 끝나는 X좌표  중요) panel의 가로크기 - ball의 가로크기 ( 그림으로 이해 )      
+
+      // translate 값으로 이동 ( 기본 delay값 설정후 시작 )
+      /*
+      ball.animate([ 
+        {transform:'translate(0,0)', opacity:1}, // 주의 px단위 표시     
+        {transform:'translate('+endX+'px,0)', opacity:0}
+      ],3000)
+      */
+
+
+       // left 좌표값으로 이동 ( 기본 delay값 없이 시작 - delay 옵션사용하면 해결 )
+       
+      /*
+      ball.animate([
+        {left:0+'px', opacity:1},
+        {left:endX+'px', opacity:0}
+      ],3000)        
+      */   
+
+      
+      //중요) 에니메이션을 진행할때는 변경할 속성의 종류와 갯수는 반드시 같아야 한다. 참고) CSS @keyframe 에니메이션은 달라도 됨 
+      //중요) 에니메이션이 끝나면 다시 원래 CSS스타일 속성으로 돌아옴 (구조코딩시 결과 모습으로 코딩하는 것이 좋음 )
+
+
+      // 여러가지 옵션값 설정       
+     
+      ball.animate([ 
+        {left:0+'px',  opacity:1}, // 에니메이션 시작 속성 
+        {left:endX+'px', opacity:0} // 에니메이션 끝 속성 
+      ],{
+        duration:3000, // 에니메이션 시간 
+        easing:'cubic-bezier(.25, .1, .25, 1)', // 가속감속효과 ( 'linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out', 'cubic-bezier(.25, .1, .25, 1)')
+        // "cubic-bezier(.25, .1, .25, 1)" : 속도감을 4단계로 나누어 구체적으로 조절 (0 ~1 숫자가 클수록 느리다. -반드시 4개 값 )
+        delay:1000, // 시작지연 시간 
+        iterations:1, // 반복횟수 ( Infinity 또는 숫자 )
+        direction:'normal', // 진행방향 ('normal', 'reverse' 'alternate', 'alternate-reverse')
+        fill:'forwards' // 'forwards' : 마지막 속성을 끝냄, 'backwards' : 시작속성으로 끝냄 , 'both' : 마지막 모습으로 끝내고 다음 또는 이전 에니메이션과 연동 
+        // 중요) fill 속성을 정의하지 않으면 에니메이션이 끝난다음 원 CSS 속성으로 돌아온다.- fill속성을 'forwards' , 'both' 지정하는 것이 좋음 
+      }).onfinish=()=>{ 
+        alert("에니메이션종료")// 에니메이션 완료시 실행할 명령 
+      }    
+
+      /*
+      에니메이션 종료후 콜백함수 적용방법 (중요)
+
+      1. 에니메이션.finished.then(()=>{ // ES6 Promise 기반 - 크로스브라우징 주의 ( 파폭에서 확인 )
+          // 에니메이션 완료후 실행할 명령 
+        },()=>{
+          // 에니메이션 미완료후 실행할 명령 
+        })
+
+      2. 에니메이션.onfinish=()=>{ // 크로스브라우징 좋음 
+         // 에니메이션 완료후 실행할 명령 
+      }
+
+      3. 에니메이션.addEventListener('finish',()=>{
+         // 에니메이션 완료후 실행할 명령 
+      })
+
+      */   
+         
+
+    })
+		
+    
+  </script>
+
+
+</head>
+<body>
+
+  <div id="wrap">
+
+    <div id="panel">
+
+      <div id="ball"> 
+      
+      </div>    
+
+    </div>
+
+     
+  </div>
+  
+</body>
+</html>

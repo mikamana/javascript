@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> slideMenu </title>
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>    
+  <!--GSAP CDN 코드 -->
+  
+  <script> 
+  
+    
+
+
+
+    //  document.addEventListener("DOMContentLoaded",()=>{
+
+    //    const mainMenu=document.querySelectorAll("#mainmenu_list>li")
+    //    const subMenuList=document.querySelectorAll(".submenu_list")
+    //    const subMenuBg=document.querySelector("#sub_bg")
+    //    const headerWrap=document.querySelector("#header_wrap")
+
+    //    let subMenuBgHeight=160;
+
+    //    let subMenuOpen=false;
+
+
+
+    //   //  for(const item of subMenuList){
+    //   //   item.style.display="none"
+    //   //  }
+    //   //  subMenuBg.style.display="none"
+
+    //   for(const item of mainMenu){
+    //     item.addEventListener("mouseenter", showSubMenu)
+    //   }
+    //   headerWrap.addEventListener("mouseleave", hideSubMenu)
+
+
+
+
+    //   }
+
+    //   function showSubMenu(){
+    //     if(subMenuOpen==false){
+               
+    //       subMenuBg.style.display="block";
+    //       gsap.to(subMenuBg, {height:subMenuBgHeight, duration:0.1, ease:"power1.out", onComplete:()=>{
+    //       // for(const item of subMenuList){
+    //       //   item.style.display="block"
+    //       // }
+    //       gsap.set(subMenuList, {display:"block"})
+
+    //       subMenuOpen=true;
+    //       // gsap.set을 사용하면 여러 요소를 컨트롤할때, 즉 스타일을 먹일때 for문을 사용하지않고 대신 사용하기좋다.
+    //     }})
+    //     }
+    //   }
+
+
+        //   function hideSubMenu(){
+    //      if(subMenuOpen==true){
+    //       gsap.to(subMenuBg,{height:0, duration:0.3, ease:"power1.out", onComplete:()=>{
+    //         subMenuOpen=false
+    //       }})
+    //     gsap.set(subMenuList, {display:"none"})
+    //      }
+    //     // subMenuBg.style.display="none"
+
+    //  })
+
+
+    document.addEventListener("DOMContentLoaded", ()=>{
+
+        const mainMenu=document.querySelectorAll("#mainmenu_list>li")
+        const subMenuList=document.querySelectorAll(".submenu_list")
+        const subMenuBg=document.querySelector("#sub_bg")
+        const headerWrap=document.querySelector("#header_wrap")
+
+        for(const item of mainMenu){
+          item.addEventListener("mouseenter", showSubMenu) 
+        }
+        headerWrap.addEventListener("mouseleave", hideSubMenu)
+
+        function showSubMenu(){
+
+          subMenuBg.style.display="block"
+          gsap.to(subMenuBg, {height:160, duration:0.3, ease:"power1.out", onComplete:()=>{
+        }})
+          gsap.set(subMenuList, {display:"block"})
+
+        }
+
+        function hideSubMenu(){
+
+          gsap.to(subMenuBg, {height:0, duration:0.1, ease:"power1.out", onComplete:()=>{
+          
+          }})
+          gsap.set(subMenuList, {display:"none"})
+        }
+
+        
+
+
+
+
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+  </script>
+
+
+</head>
+<body>
+
+    <div id="header_wrap">
+        <div id="header_inner">
+          <h1 id="logo">
+            <a href="index.php"><img src="images/logo.gif" alt="글렘쉘"></a>
+          </h1>
+          
+          <h2 class="hidden">메인메뉴</h2>
+          <ul id="mainmenu_list">
+            <li><a href="brand.php"><img src="images/mainmenu_01.gif" alt="브랜드소개"></a>
+              <ul class="submenu_list">
+                <li><a href="#">BRAND</a></li>
+                <li><a href="#">DESIGN</a></li>
+                <li><a href="#">BI</a></li>
+              </ul>
+            
+            </li>
+            <li><a href="#"><img src="images/mainmenu_02.gif" alt="컬렉션"></a>
+              <ul class="submenu_list">
+                <li><a href="#">CRYSTAL</a></li>
+                <li><a href="#">NANO</a></li>
+                <li><a href="#">MAGIC</a></li>
+                <li><a href="#">PUZZLE</a></li>
+              </ul>        
+            </li>
+            <li><a href="#"><img src="images/mainmenu_03.gif" alt="매장안내"></a>
+              <ul class="submenu_list">
+                <li><a href="#">ON-LINE</a></li>
+                <li><a href="#">OFF-LINE</a></li>
+                <li><a href="#">B2B</a></li>            
+              </ul>   
+            
+            </li>
+            <li><a href="#"><img src="images/mainmenu_04.gif" alt="리뷰"></a>
+              <ul class="submenu_list">
+                <li><a href="#">EVENT</a></li>
+                <li><a href="#">NOTICE</a></li>
+                <li><a href="#">NEWS</a></li>
+                <li><a href="#">INTERVIEW</a></li>             
+              </ul>       
+            </li>
+            <li><a href="#"><img src="images/mainmenu_05.gif" alt="고객센터"></a>
+              <ul class="submenu_list">
+                <li><a href="#">INSTALL</a></li>
+                <li><a href="#">POWER REVIEW</a></li>
+                <li><a href="#">Q&A</a></li>
+                <li><a href="#">FAQ</a></li>             
+              </ul>       
+            </li>
+          </ul>
+          <h2 id="bestmenu"><a href="#"><img src="images/best_btn.gif" alt="주간베스트상품"></a></h2>
+        </div> 
+    
+       <div id="sub_bg"></div> <!--서브메뉴배경-->
+    
+      </div>
+  
+</body>
+</html>

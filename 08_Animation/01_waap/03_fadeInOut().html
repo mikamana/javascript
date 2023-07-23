@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+  #wrap{
+    width:220px; height:220px; position:absolute; left:50%; margin-left:-110px; top:200px;
+  }
+  
+  #img_wrap{
+			border:1px #000000 solid;
+			width:220px;
+			height:220px;		
+			text-align:center;
+      margin-bottom:20px;
+      box-sizing:border-box; overflow:hidden;       
+					
+	}
+  #navi{
+    width:100%; text-align:center; 
+  }
+  
+  
+  
+  </style>
+
+  <title> fadeIn_fadeOut </title>
+
+  <script>  
+
+    document.addEventListener('DOMContentLoaded',()=>{
+     
+      const imgWrap=document.querySelector('#img_wrap'); // 에니메이션 대상인 #img_wrap 찾음             
+
+      document.querySelector('#fadeOut_btn').addEventListener('click',imgFadeOutAni); // fadeOut 버튼 클릭시 imgFadeOutAni() 함수실행 
+      document.querySelector('#fadeIn_btn').addEventListener('click',imgFadeInAni); // fadeIn 버튼 클릭시 imgFadeInAni() 함수실행 
+
+      
+      function imgFadeOutAni(){ // imgFadeOutAni() 함수
+
+        imgWrap.animate([
+          {opacity:1},
+          {opacity:0} // 사라지는 효과 
+        ],{
+          duration:1000, easing:'ease-out', fill:'forwards' // 중요) 에니메이션 종료후 마지막 속성으로 유지 
+        }).onfinish=()=>{
+          alert('fadeOut종료')
+        }
+      }
+
+      function imgFadeInAni(){ // imgFadeInAni() 함수        
+        
+        imgWrap.animate([
+          {opacity:0},
+          {opacity:1} // 나타나는 효과 
+        ],{
+          duration:1000, easing:'ease-out', fill:'forwards' // 중요) 에니메이션 종료후 마지막 속성으로 유지 
+        }).onfinish=()=>{
+          alert('fadeIn종료')
+        }
+      } 
+      
+      
+    })      
+  
+  </script>
+
+
+</head>
+<body>
+
+  <div id="wrap">
+    <div id="img_wrap">
+      <img id="img1" src="images/img1.jpg">
+    </div>
+    
+    <div id="navi">
+      <button id="fadeIn_btn">fadeIn</button>
+      <button id="fadeOut_btn">fadeOut</button>     
+    </div>
+
+  </div>
+  
+</body>
+</html>

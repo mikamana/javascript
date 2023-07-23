@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+    #wrap{
+      width:880px;
+      height:300px;
+      position:absolute; left:50%; margin-left:-440px; top:200px;      
+    }
+    
+    #panel{
+      width:100%; height:220px; 
+      border:1px #000000 solid; 		
+      margin-bottom:10px; 
+      position:absolute; left:0px; top:0px; 
+      
+    }
+		
+		#ball{			
+			width:50px; 
+			height:50px;
+      border-radius:25px; 
+			position:absolute; left:0px; top:85px; 
+      background:red;		
+    }	
+    
+    #start_btn{
+      position:absolute; bottom:20px; left:50%; margin-left:-20px; 
+    }
+  
+    
+  
+  </style>
+
+  <title> ballMoving - Web Animation API  </title>
+
+  <script>    
+
+   /* 
+       Web Animation API 
+       
+       
+       기본형식 
+
+       에니메이션대상.animate([
+         {속성1:값, 속성2:값}, //에니메이션 시작속성 
+         {속성1:값, 속성2:값}, // 에니메이션 끝속성               
+      ],에니메이션효과시간);
+
+
+      옵션설정 
+
+       에니메이션대상.animate([
+         {속성1:값, 속성2:값}, //에니메이션 시작속성 
+         {속성1:값, 속성2:값}, // 에니메이션 끝속성         
+      ],{
+        duration: 에니메이션 시간 (기본단위 ms )
+        easing: 가속감속효과 ( 'linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out')
+        delay: 시작지연 시간 (기본단위 ms )
+        iterations: 반복횟수 ( Infinity 또는 숫자 )
+        direction: 진행방향 ('normal', 'reverse' 'alternate', 'alternate-reverse')
+      });
+          
+    */	
+
+
+    document.addEventListener("DOMContentLoaded",()=>{
+
+        const ball=document.querySelector("#ball")
+        const panel=document.querySelector("#panel")
+        
+        let endX=panel.clientWidth-ball.offsetWidth;
+        
+        ball.animate([
+          {left:0+"px", opacity:1},
+          {left:endX+"px", opacity:0}
+        ],{
+          duration:3000,
+          easing:"ease-out",
+          delay:1000,
+          iterations:2,
+          fill:"forwards",
+          direction:"normal"
+        }).onfinish=()=>{
+          alert("애니메이션종료")
+        }
+
+
+
+        // console.log(endX)
+
+
+
+        
+
+
+    })
+
+    
+
+
+
+
+
+
+
+
+    
+
+
+		
+    
+  </script>
+
+
+</head>
+<body>
+
+  <div id="wrap">
+
+    <div id="panel">
+
+      <div id="ball"> 
+      
+      </div>    
+
+    </div>
+
+     
+  </div>
+  
+</body>
+</html>
